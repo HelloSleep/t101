@@ -1,0 +1,23 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.example (expand)" [label = "aws_instance.example", shape = "box"]
+		"[root] aws_network_interface.example (expand)" [label = "aws_network_interface.example", shape = "box"]
+		"[root] aws_subnet.example (expand)" [label = "aws_subnet.example", shape = "box"]
+		"[root] aws_vpc.example (expand)" [label = "aws_vpc.example", shape = "box"]
+		"[root] data.aws_ami.amazon_linux_2 (expand)" [label = "data.aws_ami.amazon_linux_2", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.subnet_cidr_block" [label = "var.subnet_cidr_block", shape = "note"]
+		"[root] aws_instance.example (expand)" -> "[root] aws_network_interface.example (expand)"
+		"[root] aws_instance.example (expand)" -> "[root] data.aws_ami.amazon_linux_2 (expand)"
+		"[root] aws_network_interface.example (expand)" -> "[root] aws_subnet.example (expand)"
+		"[root] aws_subnet.example (expand)" -> "[root] aws_vpc.example (expand)"
+		"[root] aws_subnet.example (expand)" -> "[root] var.subnet_cidr_block"
+		"[root] aws_vpc.example (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_ami.amazon_linux_2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.example (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+

@@ -1,0 +1,21 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] random_password.password (expand)" [label = "random_password.password", shape = "box"]
+		"[root] random_pet.name (expand)" [label = "random_pet.name", shape = "box"]
+		"[root] var.isDB" [label = "var.isDB", shape = "note"]
+		"[root] output.id (expand)" -> "[root] random_pet.name (expand)"
+		"[root] output.pw (expand)" -> "[root] random_password.password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_password.password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_pet.name (expand)"
+		"[root] random_password.password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] random_password.password (expand)" -> "[root] var.isDB"
+		"[root] random_pet.name (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] root" -> "[root] output.id (expand)"
+		"[root] root" -> "[root] output.pw (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+	}
+}
+

@@ -1,0 +1,51 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.myec2 (expand)" [label = "aws_instance.myec2", shape = "box"]
+		"[root] aws_internet_gateway.myigw (expand)" [label = "aws_internet_gateway.myigw", shape = "box"]
+		"[root] aws_route.mydefaultroute (expand)" [label = "aws_route.mydefaultroute", shape = "box"]
+		"[root] aws_route_table.myrt (expand)" [label = "aws_route_table.myrt", shape = "box"]
+		"[root] aws_route_table_association.myrtassociation1 (expand)" [label = "aws_route_table_association.myrtassociation1", shape = "box"]
+		"[root] aws_route_table_association.myrtassociation2 (expand)" [label = "aws_route_table_association.myrtassociation2", shape = "box"]
+		"[root] aws_security_group.mysg (expand)" [label = "aws_security_group.mysg", shape = "box"]
+		"[root] aws_security_group_rule.mysginbound (expand)" [label = "aws_security_group_rule.mysginbound", shape = "box"]
+		"[root] aws_security_group_rule.mysgoutbound (expand)" [label = "aws_security_group_rule.mysgoutbound", shape = "box"]
+		"[root] aws_subnet.mysubnet1 (expand)" [label = "aws_subnet.mysubnet1", shape = "box"]
+		"[root] aws_subnet.mysubnet2 (expand)" [label = "aws_subnet.mysubnet2", shape = "box"]
+		"[root] aws_vpc.myvpc (expand)" [label = "aws_vpc.myvpc", shape = "box"]
+		"[root] data.aws_ami.my_amazonlinux2 (expand)" [label = "data.aws_ami.my_amazonlinux2", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] aws_instance.myec2 (expand)" -> "[root] aws_internet_gateway.myigw (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] aws_security_group.mysg (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] aws_subnet.mysubnet1 (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] data.aws_ami.my_amazonlinux2 (expand)"
+		"[root] aws_internet_gateway.myigw (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] aws_route.mydefaultroute (expand)" -> "[root] aws_internet_gateway.myigw (expand)"
+		"[root] aws_route.mydefaultroute (expand)" -> "[root] aws_route_table.myrt (expand)"
+		"[root] aws_route_table.myrt (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] aws_route_table_association.myrtassociation1 (expand)" -> "[root] aws_route_table.myrt (expand)"
+		"[root] aws_route_table_association.myrtassociation1 (expand)" -> "[root] aws_subnet.mysubnet1 (expand)"
+		"[root] aws_route_table_association.myrtassociation2 (expand)" -> "[root] aws_route_table.myrt (expand)"
+		"[root] aws_route_table_association.myrtassociation2 (expand)" -> "[root] aws_subnet.mysubnet2 (expand)"
+		"[root] aws_security_group.mysg (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] aws_security_group_rule.mysginbound (expand)" -> "[root] aws_security_group.mysg (expand)"
+		"[root] aws_security_group_rule.mysgoutbound (expand)" -> "[root] aws_security_group.mysg (expand)"
+		"[root] aws_subnet.mysubnet1 (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] aws_subnet.mysubnet2 (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] aws_vpc.myvpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_ami.my_amazonlinux2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] output.aws_vpc_id (expand)" -> "[root] aws_vpc.myvpc (expand)"
+		"[root] output.myec2_public_ip (expand)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route.mydefaultroute (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.myrtassociation1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.myrtassociation2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group_rule.mysginbound (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_security_group_rule.mysgoutbound (expand)"
+		"[root] root" -> "[root] output.aws_vpc_id (expand)"
+		"[root] root" -> "[root] output.myec2_public_ip (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+

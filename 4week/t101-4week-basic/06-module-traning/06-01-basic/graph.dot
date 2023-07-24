@@ -1,0 +1,39 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] module.mypw1.random_password.password (expand)" [label = "module.mypw1.random_password.password", shape = "box"]
+		"[root] module.mypw1.random_pet.name (expand)" [label = "module.mypw1.random_pet.name", shape = "box"]
+		"[root] module.mypw2.random_password.password (expand)" [label = "module.mypw2.random_password.password", shape = "box"]
+		"[root] module.mypw2.random_pet.name (expand)" [label = "module.mypw2.random_pet.name", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] module.mypw1 (close)" -> "[root] module.mypw1.output.id (expand)"
+		"[root] module.mypw1 (close)" -> "[root] module.mypw1.output.pw (expand)"
+		"[root] module.mypw1.output.id (expand)" -> "[root] module.mypw1.random_pet.name (expand)"
+		"[root] module.mypw1.output.pw (expand)" -> "[root] module.mypw1.random_password.password (expand)"
+		"[root] module.mypw1.random_password.password (expand)" -> "[root] module.mypw1.var.isDB (expand)"
+		"[root] module.mypw1.random_password.password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.mypw1.random_pet.name (expand)" -> "[root] module.mypw1 (expand)"
+		"[root] module.mypw1.random_pet.name (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.mypw1.var.isDB (expand)" -> "[root] module.mypw1 (expand)"
+		"[root] module.mypw2 (close)" -> "[root] module.mypw2.output.id (expand)"
+		"[root] module.mypw2 (close)" -> "[root] module.mypw2.output.pw (expand)"
+		"[root] module.mypw2.output.id (expand)" -> "[root] module.mypw2.random_pet.name (expand)"
+		"[root] module.mypw2.output.pw (expand)" -> "[root] module.mypw2.random_password.password (expand)"
+		"[root] module.mypw2.random_password.password (expand)" -> "[root] module.mypw2.var.isDB (expand)"
+		"[root] module.mypw2.random_password.password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.mypw2.random_pet.name (expand)" -> "[root] module.mypw2 (expand)"
+		"[root] module.mypw2.random_pet.name (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] module.mypw2.var.isDB (expand)" -> "[root] module.mypw2 (expand)"
+		"[root] output.mypw1 (expand)" -> "[root] module.mypw1 (close)"
+		"[root] output.mypw2 (expand)" -> "[root] module.mypw2 (close)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.mypw1.random_password.password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.mypw1.random_pet.name (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.mypw2.random_password.password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] module.mypw2.random_pet.name (expand)"
+		"[root] root" -> "[root] output.mypw1 (expand)"
+		"[root] root" -> "[root] output.mypw2 (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+	}
+}
+
