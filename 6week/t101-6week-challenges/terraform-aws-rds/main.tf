@@ -1,4 +1,4 @@
-fresource "aws_db_instance" "education" {
+resource "aws_db_instance" "education" {
   identifier             = "${var.db_name}-${random_pet.random.id}"
   instance_class         = var.db_instance_class # 修正
   allocated_storage      = 5
